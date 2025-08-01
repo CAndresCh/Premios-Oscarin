@@ -12,3 +12,18 @@ def registrar_pelicula():
     else: 
         categorias[categoria][titulo] = 0 
         print(f"✅ Película '{titulo}' registrada en la categoría '{categoria}'.") 
+
+def registrar_voto():
+    try:
+        titulo = input("Ingrese el título de la película que desea votar: ").strip()
+        encontrada = False
+        for cat in categorias:
+            if titulo in categorias[cat]:
+                categorias[cat][titulo] += 1
+                print(f"✅ Voto registrado para '{titulo}' en la categoría '{cat}'.")
+                encontrada = True
+                break
+        if not encontrada:
+            raise ValueError("Película no encontrada.")
+    except ValueError as e:
+        print(f"❌ Error: {e}")
